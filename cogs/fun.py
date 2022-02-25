@@ -32,7 +32,7 @@ class Games(commands.Cog, name="fun"):
             async with session.get("https://uselessfacts.jsph.pl/random.json?language=en") as request:
                 if request.status == 200:
                     data = await request.json()
-                    embed = discord.Embed(description=f"**{data['text']}** ヽ(o⌣oヾ)", color=0x8233FF)
+                    embed = discord.Embed(description=f"**{data['text']}**\n          **ヽ(o⌣oヾ)**", color=0x8233FF, timestamp=datetime.datetime.now())
                     await context.reply(embed=embed)
                 else:
                     embed = discord.Embed(
@@ -45,19 +45,29 @@ class Games(commands.Cog, name="fun"):
 
     @commands.command(name="show", description="Searches for an image on Google")
     async def show(self, ctx, search):
-        ran = random.randint(0, 9)
-        resource = build("customsearch", "v1", developerKey=google_api_key).cse()
-        result = resource.list(
-            q=f"{search}", cx="<YOUR SEARCH ENGINE ID>", searchType="image"
-        ).execute()
-        url = result["items"][ran]["link"]
-        embed1 = discord.Embed(title=f"I found this for you on Google ヘ(♥﹏♥ヘ)")
-        embed1.set_image(url=url)
-        await ctx.reply(embed=embed1)
+        try:
+
+            ran = random.randint(0, 9)
+            resource = build("customsearch", "v1", developerKey=google_api_key).cse()
+            result = resource.list(
+                q=f"{search}", cx="bcc843f07086ef2b3", searchType="image"
+            ).execute()
+            url = result["items"][ran]["link"]
+            embed1 = discord.Embed(title=f"I found this for you on Google  (•ˇ‿ˇ•)", color=0x036bfc,
+                                   timestamp=datetime.datetime.now())
+            embed1.set_image(url=url)
+            await ctx.reply(embed=embed1)
+        except:
+            embed1 = discord.Embed(title=f"Something went wrong! (•0_0•)", color=0xff0000,
+                                   timestamp=datetime.datetime.now())
+            await ctx.reply(embed=embed1)
+            return
 
     @commands.command(name="hug", description="Hugs back")
     async def hug(self, context):
-        await context.reply(embed=discord.Embed(title=f"{context.author.mention} * hugs back * ＼( ^o^ )／"))
+        await context.reply(content=f"<@!{context.author.id}>", embed=discord.Embed(title=f"*Hugs back* ＼( ^o^ )／",
+                                                                                    color=0x036bfc,
+                                                                                    timestamp=datetime.datetime.now()))
 
     @commands.command(name="roll", description="Rolls a dice")
     async def roll(self, context):

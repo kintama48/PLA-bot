@@ -1,3 +1,5 @@
+import datetime
+
 import discord
 from discord.ext import commands
 import json
@@ -23,7 +25,7 @@ class ModerationCog(commands.Cog, name="moderation"):
             embed = discord.Embed(
                 title="Error",
                 description="User has Admin permissions ( ಠ⌣ಠ)",
-                color=0x541760
+                color=0x541760, timestamp=datetime.datetime.now()
             )
             await context.send(embed=embed)
         else:
@@ -59,7 +61,7 @@ class ModerationCog(commands.Cog, name="moderation"):
             embed = discord.Embed(
                 title="Changed Nickname ⊂(⊙д⊙)つ",
                 description=f" ╰( ^o^)╮ **{member}'s** new nickname is **{nickname}**!",
-                color=0x42F56C
+                color=0x42F56C, timestamp=datetime.datetime.now()
             )
             await context.reply(embed=embed)
         except:
@@ -67,7 +69,7 @@ class ModerationCog(commands.Cog, name="moderation"):
                 title="Error!",
                 description="An error occurred while trying to change the nickname of the user. Make sure my role is "
                             "above the role of the user you want to change the nickname ⊂(⊙д⊙)つ",
-                color=0x541760
+                color=0x541760, timestamp=datetime.datetime.now()
             )
             await context.message.channel.reply(embed=embed)
 
@@ -80,7 +82,7 @@ class ModerationCog(commands.Cog, name="moderation"):
                 embed = discord.Embed(
                     title="Error",
                     description="User has Admin permissions ( ಠ⌣ಠ)",
-                    color=0x541760
+                    color=0x541760, timestamp=datetime.datetime.now()
                 )
                 await context.reply(embed=embed)
             else:
@@ -88,7 +90,7 @@ class ModerationCog(commands.Cog, name="moderation"):
                 embed = discord.Embed(
                     title="User Banned (≖_≖ )",
                     description=f"**{member}** was banned by **{context.message.author}** :[",
-                    color=0x42F56C
+                    color=0x42F56C, timestamp=datetime.datetime.now()
                 )
                 await context.reply(embed=embed)
                 await member.reply(f"You were banned by **{context.message.author}** (≖_≖ )")
@@ -97,7 +99,7 @@ class ModerationCog(commands.Cog, name="moderation"):
                 title="Error!",
                 description="An error occurred while trying to ban the user. Make sure my role is above the role of "
                             "the user you want to ban.",
-                color=0x541760
+                color=0x541760, timestamp=datetime.datetime.now()
             )
             await context.reply(embed=embed)
 
@@ -109,7 +111,7 @@ class ModerationCog(commands.Cog, name="moderation"):
         embed = discord.Embed(
             title="User Warned ( ಠ_ಠ)–Ψ",
             description=f"( ಠ_ಠ)–Ψ **{member}** was warned by **{context.message.author}**. Please behave!",
-            color=0x42F56C
+            color=0x42F56C, timestamp=datetime.datetime.now()
         )
         embed.add_field(
             name="Reason:",
@@ -131,7 +133,7 @@ class ModerationCog(commands.Cog, name="moderation"):
             embed = discord.Embed(
                 title="Error!",
                 description=f"`{amount}` is not a valid number :'(",
-                color=0x541760
+                color=0x541760, timestamp=datetime.datetime.now()
             )
             await context.reply(embed=embed)
             return
@@ -139,7 +141,7 @@ class ModerationCog(commands.Cog, name="moderation"):
             embed = discord.Embed(
                 title="Error!",
                 description=f"`{amount}` is not a valid number :'(",
-                color=0x541760
+                color=0x541760, timestamp=datetime.datetime.now()
             )
             await context.reply(embed=embed)
             return
@@ -147,7 +149,7 @@ class ModerationCog(commands.Cog, name="moderation"):
         embed = discord.Embed(
             title="All done ( ＾◡＾)",
             description=f"**{context.message.author}** cleared **{len(purged_messages)-1}** messages!",
-            color=0x541760
+            color=0x541760, timestamp=datetime.datetime.now()
         )
         await context.send(embed=embed)
 
@@ -157,8 +159,8 @@ class ModerationCog(commands.Cog, name="moderation"):
     async def dm(self, context, member: discord.Member, *, message):
 
         embed = discord.Embed(
-            description=f"{message} ¬‿¬",
-            color=0xD5059D
+            description=f"{message} |¬‿¬|",
+            color=0xD5059D, timestamp=datetime.datetime.now()
         )
         try:
             # To know what permissions to give to your bot, please see here: https://discordapi.com/permissions.html
