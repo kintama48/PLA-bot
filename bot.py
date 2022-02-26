@@ -44,8 +44,8 @@ if __name__ == "__main__":  # loading the features of the bot
 
 @bot.event
 async def on_member_join(member):
-    await bot.get_channel(946814608834986024).send(embed=discord.Embed(
-        title=f"Welcome to Boosting Academy <@!{member.id}>",
+    await bot.get_channel(946814608834986024).send(content=member.mention, embed=discord.Embed(
+        title=f"Welcome to Boosting Academy",
         description="**Note**\n"
                     "• Please head over to the <#946809550365921330> channel to get **verified**",
         color=0x036bfc,
