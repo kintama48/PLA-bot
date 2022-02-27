@@ -47,7 +47,7 @@ class Giveaways(commands.Cog, name="giveaways"):
         question_message = None
         for question in questions:
             embed = discord.Embed(
-                title="Giveaway 🎉 ヽ(o⌣oヾ)",
+                title="Giveaway 🎉",
                 description=question,
                 color=self.color
             ).set_footer(icon_url=self.bot.user.avatar_url, text="Giveaway !")
@@ -168,7 +168,7 @@ class Giveaways(commands.Cog, name="giveaways"):
         result_embed = discord.Embed(
             title="🎉 {} 🎉".format(data["prize"]),
             color=self.color,
-            description="**Congratulations** {},  you won the **giveaway** ヽ(o⌣oヾ) !".format(", ".join(users_mention))
+            description="**Congratulations** {},  you won the **giveaway** !".format(", ".join(users_mention))
         ) \
             .set_footer(icon_url=self.bot.user.avatar_url, text="Giveaway Ended !")
         await giveaway_message.edit(embed=result_embed)

@@ -30,15 +30,15 @@ class general(commands.Cog, name="general"):
     @commands.command(name="say", description="Makes bot say whatever you want")
     async def say(self, context, message):
         try:
-            await context.reply(content=f"{message} (′ꈍωꈍ‵)")
+            await context.reply(content=f"{message}")
         except discord.Forbidden:
-            await context.send(content=f"{message} (′ꈍωꈍ‵)")
+            await context.send(content=f"{message}")
 
     # makes bot say whatever u want in an embed
-    @commands.command(name="embed", description="Makes bot say whatever u want in an embed")
+    @commands.command(name="embed", description="Makes bot say whatever you want but in an embed")
     async def say_embed(self, context, message):
         embed = discord.Embed(
-            description=f"{message} ⎝⊜ω⊜⎠",
+            description=f"{message}",
             color=0xD5059D
         )
         try:
@@ -51,7 +51,7 @@ class general(commands.Cog, name="general"):
     async def add_role(self, context, member: discord.Member, role: discord.Role):
         await member.add_roles(role)
         await context.reply(
-            embed=discord.Embed(description=f"`{member.display_name}` has been given role: **{role.name}** ◕ᗜ◕",
+            embed=discord.Embed(description=f"`{member.display_name}` has been given role: **{role.name}**",
                                 color=0xD5059D))
 
 

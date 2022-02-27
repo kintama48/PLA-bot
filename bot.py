@@ -7,6 +7,7 @@ import sys
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
+from discord.utils import get
 
 if not os.path.isfile("config.json"):
     sys.exit("'config.json' not found! Add it and try again.")
@@ -15,7 +16,7 @@ else:
         config = json.load(file)
 
 intents = discord.Intents.default()
-intents.members = True
+# intents.members = True
 bot = Bot(command_prefix=config["bot_prefix"], intents=intents)
 epoch = datetime.datetime.utcfromtimestamp(0)
 custom_invites = {}
@@ -51,7 +52,7 @@ async def on_member_join(member):
         color=0x036bfc,
         timestamp=datetime.datetime.now()
     ))
-    await member.add_roles(([guild for guild in bot.guilds if guild.id == 942107575338565703][0]).get_role(role_id=946806692534968321))
+    await member.add_roles(get(get(bot.guilds, id=942107575338565703).roles, id=942107575338565703))
 
 
 @bot.event

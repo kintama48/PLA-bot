@@ -45,7 +45,7 @@ class Captcha(commands.Cog, name="captcha"):
         role = 831334682858750042
         if role in [role.id for role in ctx.author.roles]:
             await ctx.reply(content=ctx.author.mention, embed=discord.Embed(
-                    title="You are already verified!"))
+                    title="You are already **verified**!"))
             return
         captcha = discapty.Captcha("wheezy")
         captcha_image = discord.File(captcha.generate_captcha(), filename="captcha.png")
@@ -76,14 +76,15 @@ class Captcha(commands.Cog, name="captcha"):
 
             if captcha.verify_code(message.content):
                 msg = await ctx.channel.send(content=ctx.author.mention, embed=discord.Embed(
-                    description="**You are now verified.**",
-                    color=0x00ff00).set_thumbnail(url=ctx.author.avatar_url))
+                    description="You are now **verified**.").set_thumbnail(url=ctx.author.avatar_url))
                 await self.delete_msgs(delete_queue)
                 await asyncio.sleep(5)
                 await msg.delete()
                 await ctx.message.author.add_roles(ctx.guild.get_role(role))
-                await ctx.message.author.remove_roles(ctx.guild.get_role(946806692534968321))
-                return
+                try:
+                    await ctx.message.author.remove_roles(ctx.guild.get_role(946806692534968321))
+                except:
+                    return
             else:
                 i -= 1
                 if i == 0:

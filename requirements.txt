@@ -3,3 +3,4 @@ discord==1.7.3
 google-api-python-client
 asyncio~=3.4.3
 discapty
+git+https://github.com/Rapptz/discord.py@master
