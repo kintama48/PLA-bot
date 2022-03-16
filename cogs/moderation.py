@@ -109,14 +109,12 @@ class ModerationCog(commands.Cog, name="moderation"):
     async def announce(self, context, channel: discord.TextChannel, *args):
         if "公告权限" in [role.name for role in context.author.roles]:
             await channel.send(embed=discord.Embed(title="Announcement", timestamp=datetime.datetime.now(), color=0x541760,
-                                                   description=" ".join(args)).set_footer(
-                                icon_url=self.bot.user.avatar_url,
-                                text="Announcement "))
+                                                   description=" ".join(args)).set_footer(icon_url=self.bot.user.avatar_url))
 
             await context.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
                                                    description=f"**Operation Successful**\nPosted the new "
                                                                f"announcement in "
-                                                               f" {channel.mention}!"))
+                                                               f" {channel.mention}!"), icon_url=self.bot.user.avatar_url)
         else:
             await context.reply(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
                                                     description="**Operation Unsuccessful**\nYou do not have "
