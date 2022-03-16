@@ -1,1 +1,1 @@
-# Boosting Academy Bot
+# PLA Official Bot
