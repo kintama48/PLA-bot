@@ -69,6 +69,13 @@ async def on_command_error(context, error):
             color=0xFF5733
         )
         await context.reply(embed=embed)
+    elif isinstance(error, commands.MissingPermissions) or isinstance(error, commands.MissingRole):
+        embed = discord.Embed(
+            title="Error!",
+            description="Missing Permissions or Required Role to run this command!",
+            color=0xFF5733
+        )
+        await context.reply(embed=embed)
     else:
         embed = discord.Embed(
             title="Error!",
