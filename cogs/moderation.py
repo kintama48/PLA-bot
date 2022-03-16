@@ -103,6 +103,18 @@ class ModerationCog(commands.Cog, name="moderation"):
             )
             await context.reply(embed=embed)
 
+    @commands.command(name="announce",
+                      description=f"Announces something in a specific channel. Syntax: {config['bot_prefix']}announce <#channel-name> <thing to announce>")
+    @commands.has_permissions(administrator=True)
+    async def announce(self, context, channel: discord.TextChannel, content):
+        await channel.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
+                                               description=content).set_footer(icon_url=self.bot.user.avatar.url,
+                                                                               text="New Announcement "))
+
+        await context.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
+                                               description=f"**Operation Successful**\nPosted the new announcement in"
+                                                           f" {channel.mention}!"))
+
     # warn a user in their DMs
     @commands.command(name="warn",
                       description="Warn a user in their DMs. Has an extra reason argument followed by the member's @.")
@@ -128,7 +140,7 @@ class ModerationCog(commands.Cog, name="moderation"):
     @commands.has_permissions(administrator=True)
     async def clear(self, context, amount):
         try:
-            amount = int(amount)+1
+            amount = int(amount) + 1
         except:
             embed = discord.Embed(
                 title="Error!",
@@ -148,7 +160,7 @@ class ModerationCog(commands.Cog, name="moderation"):
         purged_messages = await context.message.channel.purge(limit=amount)
         embed = discord.Embed(
             title="All done",
-            description=f"**{context.message.author}** cleared **{len(purged_messages)-1}** messages!",
+            description=f"**{context.message.author}** cleared **{len(purged_messages) - 1}** messages!",
             color=0x541760, timestamp=datetime.datetime.now()
         )
         await context.send(embed=embed)

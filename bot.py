@@ -18,8 +18,6 @@ else:
 intents = discord.Intents.default()
 # intents.members = True
 bot = Bot(command_prefix=config["bot_prefix"], intents=intents)
-epoch = datetime.datetime.utcfromtimestamp(0)
-custom_invites = {}
 
 
 @bot.event
@@ -44,18 +42,6 @@ if __name__ == "__main__":  # loading the features of the bot
 
 
 @bot.event
-async def on_member_join(member):
-    await bot.get_channel(946814608834986024).send(content=member.mention, embed=discord.Embed(
-        title=f"Welcome to Boosting Academy",
-        description="**Note**\n"
-                    "• Please head over to the <#946809550365921330> channel to get **verified**",
-        color=0x036bfc,
-        timestamp=datetime.datetime.now()
-    ))
-    await member.add_roles(get(get(bot.guilds, id=942107575338565703).roles, id=942107575338565703))
-
-
-@bot.event
 async def on_command_completion(ctx):  # command executed successfully
     fullCommandName = ctx.command.qualified_name
     split = fullCommandName.split(" ")
@@ -75,22 +61,14 @@ async def on_command_error(context, error):
             description=f"You can use this command again in {f'{round(hours)} hours' if round(hours) > 0 else ''} {f'{round(minutes)} minutes' if round(minutes) > 0 else ''} {f'{round(seconds)} seconds' if round(seconds) > 0 else ''}.",
             color=0x8233FF
         )
-        await context.send(embed=embed)
-    elif isinstance(error, commands.MissingPermissions):
-        embed = discord.Embed(
-            title="Error!",
-            description="You are missing the permission `" + ", ".join(
-                error.missing_perms) + "` to execute this command!",
-            color=0xFF3387
-        )
-        await context.send(embed=embed)
+        await context.reply(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(
             title="Error!",
             description=str(error).capitalize(),
             color=0xFF5733
         )
-        await context.send(embed=embed)
+        await context.reply(embed=embed)
     raise error
 
 
