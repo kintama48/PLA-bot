@@ -106,7 +106,7 @@ class ModerationCog(commands.Cog, name="moderation"):
     @commands.command(name="announce",
                       description=f"Announces something in a specific channel. Syntax: {config['bot_prefix']}announce <#channel-name> <thing to announce>")
     #@commands.has_permissions(administrator=True)
-    async def announce(self, context, channel, content):
+    async def announce(self, context, channel: discord.TextChannel, content):
         await channel.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
                                                description=content).set_footer(icon_url=self.bot.user.avatar_url,
                                                                                text="New Announcement "))
