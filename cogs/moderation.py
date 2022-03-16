@@ -108,12 +108,29 @@ class ModerationCog(commands.Cog, name="moderation"):
     # @commands.has_permissions(administrator=True)
     async def announce(self, context, channel: discord.TextChannel, *args):
         await channel.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
-                                               description=args).set_footer(icon_url=self.bot.user.avatar_url,
-                                                                            text="New Announcement "))
+                                               description=" ".join(args)).set_footer(
+            icon_url=self.bot.user.avatar_url,
+            text="New Announcement "))
 
         await context.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
-                                               description=f"**Operation Successful**\nPosted the new announcement in"
+                                               description=f"**Operation Successful**\nPosted the new "
+                                                           f"announcement in "
                                                            f" {channel.mention}!"))
+        # if "公告权限" in [role.name for role in context.author.roles]:
+        #     await channel.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
+        #                                            description=" ".join(args)).set_footer(
+        #                         icon_url=self.bot.user.avatar_url,
+        #                         text="New Announcement "))
+        #
+        #     await context.send(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
+        #                                            description=f"**Operation Successful**\nPosted the new "
+        #                                                        f"announcement in "
+        #                                                        f" {channel.mention}!"))
+        # else:
+        #     await context.reply(embed=discord.Embed(timestamp=datetime.datetime.now(), color=0x541760,
+        #                                             description="**Operation Unsuccessful**\nYou do not have "
+        #                                                         "permissions to use this command!")
+        #                         .set_footer(icon_url=self.bot.user.avatar_url))
 
     # warn a user in their DMs
     @commands.command(name="warn",
