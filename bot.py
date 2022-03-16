@@ -69,6 +69,13 @@ async def on_command_error(context, error):
             color=0xFF5733
         )
         await context.reply(embed=embed)
+    else:
+        embed = discord.Embed(
+            title="Error!",
+            description=str(error).capitalize(),
+            color=0xFF5733
+        )
+        await context.reply(embed=embed)
     raise error
 
 
