@@ -1,4 +1,3 @@
-import datetime
 import json
 import os
 import platform
@@ -7,7 +6,6 @@ import sys
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-from discord.utils import get
 
 if not os.path.isfile("config.json"):
     sys.exit("'config.json' not found! Add it and try again.")
@@ -57,28 +55,28 @@ async def on_command_error(context, error):
         hours, minutes = divmod(minutes, 60)
         hours = hours % 24
         embed = discord.Embed(
-            title="Please slow down!",
+            title="Please slow down",
             description=f"You can use this command again in {f'{round(hours)} hours' if round(hours) > 0 else ''} {f'{round(minutes)} minutes' if round(minutes) > 0 else ''} {f'{round(seconds)} seconds' if round(seconds) > 0 else ''}.",
             color=0x8233FF
         )
         await context.reply(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(
-            title="Error!",
+            title="Error",
             description=str(error).capitalize(),
             color=0xFF5733
         )
         await context.reply(embed=embed)
     elif isinstance(error, commands.MissingPermissions) or isinstance(error, commands.MissingRole):
         embed = discord.Embed(
-            title="Error!",
+            title="Error",
             description="Missing Permissions or Required Role to run this command!",
             color=0xFF5733
         )
         await context.reply(embed=embed)
     else:
         embed = discord.Embed(
-            title="Error!",
+            title="Error",
             description=str(error).capitalize(),
             color=0xFF5733
         )
